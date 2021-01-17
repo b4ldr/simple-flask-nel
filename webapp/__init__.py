@@ -12,7 +12,7 @@ def root():
 @app.route("/upload", methods=['POST', 'GET'])
 def upload():
     app.logger.info(request.json)
-    return request.json
+    return str(request.json)
 
 if __name__ == "__main__":
     app.run()

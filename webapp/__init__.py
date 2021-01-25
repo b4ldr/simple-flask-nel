@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, request
 
 
@@ -11,7 +13,9 @@ def root():
 
 @app.route("/upload", methods=['POST', 'GET'])
 def upload():
-    app.logger.info(request.json)
+    nel_packet = request.json
+    nel_packet['client_ip'] = request.remote_addr
+    app.logger.info(json.dumps(nel_packet, indent=2, sort_keys=True))
     return str(request.json)
 
 if __name__ == "__main__":
